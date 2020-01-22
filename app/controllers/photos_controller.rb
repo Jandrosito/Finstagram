@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController 
 
-    before_action :find_photo, only: [:show, :edit, :update, :destroy]
+    before_action :find_photo, only: [:show, :edit, :update]
 
     def index
         photos = Photo.all
@@ -15,8 +15,15 @@ class PhotosController < ApplicationController
         photo = Photo.new
     end
 
+    def create 
+        photo = Photo.create(photo_params)
+        render json: photo
+    end
 
-
+    def destroy
+        photo = Photo.find(params[:id])
+        photo.destroy
+    end
 
     private
 

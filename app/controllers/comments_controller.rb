@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController 
 
-    before_action :find_comment, only: [:show, :edit, :update, :destroy]
+    before_action :find_comment, only: [:show, :edit, :update]
 
     def index
         comments = Comment.all
@@ -15,8 +15,15 @@ class CommentsController < ApplicationController
         comment = Comment.new
     end
 
+    def create
+        comment = Comment.create(comment_params)
+        render json: comment
+    end
 
-
+    def destroy
+        comment = Comment.find(params[:id])
+        comment.destroy
+    end
 
     private
 

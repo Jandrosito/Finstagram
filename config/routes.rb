@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :photos
   resources :comments
+  resources :likes
 end
 
 #resources :users, only: [:index, :show, :new, :create, :edit, :update]
