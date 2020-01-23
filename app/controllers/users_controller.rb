@@ -1,6 +1,6 @@
 class UsersController < ApplicationController 
 
-    before_action :find_user, only: [:show, :edit, :update]
+    before_action :find_user, only: [:show]
 
     def index
         users = User.all
@@ -23,9 +23,18 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        byebug
         user = User.find(params[:id])
         user.destroy
+    end
+
+    def edit
+        user = User.find(params[:id])
+    end
+
+    def update
+        user = User.find(params[:id])
+        user.update(user_params)
+        render json: user
     end
 
     private
